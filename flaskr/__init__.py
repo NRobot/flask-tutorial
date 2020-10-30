@@ -34,7 +34,14 @@ def create_app(test_config=None):
     def test1():
         return 'Test1'
 
+    @app.route('/test2')
+    def test2():
+        return 'Test2'
+
     from . import db
     db.init_app(app)
+
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     return app
